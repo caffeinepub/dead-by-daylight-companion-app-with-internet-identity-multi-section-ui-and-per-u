@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Dead by Daylight companion app with separate sections (Characters/Perks database, Build planner, Match tracker, News hub, Fan wiki) and user accounts, using an internal/placeholder dataset (no external REST API).",
+  "architectural_notes": [
+    "No external REST API; use built-in/placeholder dataset that can be replaced/updated later.",
+    "App organized into separate sections: Characters, Perks, Builds, Match Tracker, News, Wiki.",
+    "User authentication via Internet Identity; user-specific persistence for builds, match history, and favorites."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- App logo mark with a dark horror aesthetic (dbd-companion-logo.dim_512x512.png)\n- Wide subtle grunge/fog background texture, dark and low-contrast (dbd-companion-bg.dim_1920x1080.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-multi-section-frontend-with-separate-navigable-sections-characters-perks-build-planner-match-tracker-news-and-wiki-not-a-single-combined-page",
+      "title": "Create a multi-section frontend with separate navigable sections: Characters, Perks, Build Planner, Match Tracker, News, and Wiki (not a single combined page).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-internet-identity-authentication-to-the-app-so-users-can-sign-in-out-and-the-ui-reflects-the-authenticated-state",
+      "title": "Add Internet Identity authentication to the app so users can sign in/out and the UI reflects the authenticated state.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-characters-perks-database-ui-list-detail-views-with-search-filter-sort-controls-and-the-ability-for-signed-in-users-to-favorite-items",
+      "title": "Build the Characters & Perks database UI: list + detail views, with search/filter/sort controls, and the ability for signed-in users to favorite items.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-build-planner-section-that-lets-signed-in-users-create-edit-delete-and-save-custom-builds-e-g-role-type-selection-and-perk-loadout-and-browse-their-saved-builds",
+      "title": "Implement a Build Planner section that lets signed-in users create, edit, delete, and save custom builds (e.g., role/type selection and perk loadout), and browse their saved builds.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-match-tracker-section-that-lets-signed-in-users-record-match-results-and-view-their-match-history",
+      "title": "Implement a Match Tracker section that lets signed-in users record match results and view their match history.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-news-and-wiki-sections-that-display-content-from-the-internal-dataset-with-list-detail-views-and-basic-search",
+      "title": "Add News and Wiki sections that display content from the internal dataset with list + detail views and basic search.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-user-profile-area-that-summarizes-the-signed-in-user-s-saved-builds-favorites-and-recent-matches-with-quick-links-to-manage-them",
+      "title": "Add a user profile area that summarizes the signed-in user’s saved builds, favorites, and recent matches, with quick links to manage them.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-distinct-visual-theme-for-a-dead-by-daylight-companion-app-typography-color-palette-layout-components-and-enforce-it-consistently-across-all-sections-avoid-blue-purple-as-primary-branding-colors",
+      "title": "Apply a coherent, distinct visual theme for a Dead by Daylight companion app (typography, color palette, layout, components) and enforce it consistently across all sections. Avoid blue/purple as primary branding colors.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-a-small-set-of-custom-static-images-for-the-app-logo-and-subtle-background-and-render-them-from-the-frontend-as-static-assets",
+      "title": "Generate and include a small set of custom static images for the app (logo and subtle background) and render them from the frontend as static assets.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Separate sections for Characters & Perks database",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Build planner with ability to create/save custom builds",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Match tracker with ability to save match history per user",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "News hub section for Dead by Daylight updates",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Fan wiki section for Dead by Daylight content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "User accounts (Internet Identity) with saved favorites/builds/match history",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Built-in/placeholder dataset storage instead of external REST API",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Implement backend support for per-user data keyed by Internet Identity principal, including: saved builds, match history, and favorites (e.g., favorite characters/perks/builds).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Provide a built-in (internal/placeholder) dataset for Dead by Daylight content instead of integrating an external REST API, and expose it through backend query methods for Characters, Perks, News items, and Wiki entries.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Dead by Daylight companion app with Internet Identity, multi-section UI, and per-user saved data",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

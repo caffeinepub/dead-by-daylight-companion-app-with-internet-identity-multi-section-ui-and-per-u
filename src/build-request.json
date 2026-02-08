@@ -1,0 +1,254 @@
+{
+  "kind": "build_request",
+  "title": "Dead by Daylight companion app with Internet Identity, multi-section UI, and per-user saved data",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a multi-section frontend with separate navigable sections: Characters, Perks, Build Planner, Match Tracker, News, and Wiki (not a single combined page).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-6",
+          "msg-8"
+        ],
+        "quotes": [
+          "Make me an app about Dead By Daylight",
+          "1: all that you listed",
+          "1: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App has a clear navigation UI that links to: Characters, Perks, Build Planner, Match Tracker, News, Wiki.",
+        "Each section renders as its own page/view with an appropriate header and empty/loading states."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add Internet Identity authentication to the app so users can sign in/out and the UI reflects the authenticated state.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "3: USER ACCOUNTS"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can sign in and sign out using Internet Identity.",
+        "UI shows the current signed-in state (e.g., logged-in indicator and sign-out option).",
+        "Unauthenticated users can browse public content but cannot create/save builds, match history, or favorites."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement backend support for per-user data keyed by Internet Identity principal, including: saved builds, match history, and favorites (e.g., favorite characters/perks/builds).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "3: USER ACCOUNTS",
+          "3: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores data per authenticated principal; users can only read/write their own saved builds, match history, and favorites.",
+        "Backend exposes canister methods for CRUD operations for builds, match entries, and favorites.",
+        "Unauthenticated calls to user-specific write operations are rejected with a clear error."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Provide a built-in (internal/placeholder) dataset for Dead by Daylight content instead of integrating an external REST API, and expose it through backend query methods for Characters, Perks, News items, and Wiki entries.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "I don’t know if you want to you can delete the REST API"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No external REST API integration is used.",
+        "Backend returns lists/details for Characters and Perks from an internal dataset.",
+        "Backend returns News items and Wiki entries from an internal dataset.",
+        "Frontend can load and display this content via canister calls."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build the Characters & Perks database UI: list + detail views, with search/filter/sort controls, and the ability for signed-in users to favorite items.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "1: all that you listed",
+          "3: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Characters section displays a list and a detail view for a selected character.",
+        "Perks section displays a list and a detail view for a selected perk.",
+        "Both lists include a working search field (client-side or server-side).",
+        "Signed-in users can favorite/unfavorite characters and perks; favorites persist across reloads."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement a Build Planner section that lets signed-in users create, edit, delete, and save custom builds (e.g., role/type selection and perk loadout), and browse their saved builds.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "1: all that you listed",
+          "3: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Signed-in users can create a new build and save it to the backend.",
+        "Signed-in users can edit and delete previously saved builds.",
+        "Build Planner displays the user’s saved builds list and supports selecting one to view/edit.",
+        "Unauthenticated users can view the Build Planner UI but cannot save builds (prompt to sign in)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement a Match Tracker section that lets signed-in users record match results and view their match history.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "1: all that you listed",
+          "3: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Signed-in users can add a match entry (at minimum: date/time, role, result, optional notes).",
+        "Signed-in users can view a list of their match history sorted by most recent first.",
+        "Signed-in users can delete match entries.",
+        "Unauthenticated users cannot create or view personal match history and are prompted to sign in."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add News and Wiki sections that display content from the internal dataset with list + detail views and basic search.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "1: all that you listed",
+          "2: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "News section shows a list of news posts and a detail view.",
+        "Wiki section shows a list of wiki entries and a detail view.",
+        "Both sections include a working search field.",
+        "Pages include appropriate empty/loading/error states."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add a user profile area that summarizes the signed-in user’s saved builds, favorites, and recent matches, with quick links to manage them.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "3: yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When signed in, user can access a Profile (or equivalent) page/area.",
+        "Profile shows counts and/or previews of: saved builds, favorites, and recent match entries.",
+        "Profile provides navigation to the relevant management pages (Build Planner, Characters/Perks, Match Tracker)."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Apply a coherent, distinct visual theme for a Dead by Daylight companion app (typography, color palette, layout, components) and enforce it consistently across all sections. Avoid blue/purple as primary branding colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make me an app about Dead By Daylight"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a consistent header/nav, spacing system, and component styling.",
+        "Theme is dark/horror-inspired and readable, with consistent typography and color usage across the app.",
+        "Primary branding colors are not blue/purple."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Generate and include a small set of custom static images for the app (logo and subtle background) and render them from the frontend as static assets.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make me an app about Dead By Daylight"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are placed in frontend/public/assets/generated and are referenced directly by the frontend (not served via backend).",
+        "App uses the generated logo in the header and uses the generated background subtly in the layout (without harming readability)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in one main actor file).",
+    "Do not introduce any external database; store data in canister state.",
+    "Do not integrate an external Dead by Daylight REST API; use an internal/placeholder dataset.",
+    "Frontend must not modify any files under the immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Use English for all user-facing text."
+  ],
+  "nonGoals": [
+    "Real-time features (e.g., chat, live match updates) via WebSockets or push notifications.",
+    "Third-party authentication providers other than Internet Identity.",
+    "Importing or scraping official Dead by Daylight data from proprietary sources.",
+    "Payments, subscriptions, or e-commerce functionality."
+  ],
+  "imageRequirements": {
+    "required": [
+      "App logo mark with a dark horror aesthetic (dbd-companion-logo.dim_512x512.png)",
+      "Wide subtle grunge/fog background texture, dark and low-contrast (dbd-companion-bg.dim_1920x1080.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "User-facing text must be in English."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

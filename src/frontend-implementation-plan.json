@@ -1,0 +1,293 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Dead by Daylight Companion (Frontend): Multi-section UI, Internet Identity auth, per-user saved data views",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create separate navigable sections (pages) for Characters, Perks, Build Planner, Match Tracker, News, and Wiki with clear navigation and basic empty/loading states.",
+      "acceptanceCriteria": [
+        "App has a clear navigation UI that links to: Characters, Perks, Build Planner, Match Tracker, News, Wiki.",
+        "Each section renders as its own page/view with an appropriate header and empty/loading states."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main App component with client-side routing that defines separate routes/pages for Characters, Perks, Build Planner, Match Tracker, News, Wiki, and wires them into a shared layout (header + nav)."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout component that renders the persistent header/navigation and an outlet area for each section page; include a slot for auth controls and ensure each section has an appropriate page header."
+        },
+        {
+          "path": "frontend/src/pages/CharactersPage.tsx",
+          "operation": "create",
+          "description": "Add Characters section page shell with list/detail layout regions and empty/loading/error placeholders (data wiring implemented under REQ-5)."
+        },
+        {
+          "path": "frontend/src/pages/PerksPage.tsx",
+          "operation": "create",
+          "description": "Add Perks section page shell with list/detail layout regions and empty/loading/error placeholders (data wiring implemented under REQ-5)."
+        },
+        {
+          "path": "frontend/src/pages/BuildPlannerPage.tsx",
+          "operation": "create",
+          "description": "Add Build Planner section page shell with empty/loading/error placeholders and a signed-in gating area (data wiring implemented under REQ-6)."
+        },
+        {
+          "path": "frontend/src/pages/MatchTrackerPage.tsx",
+          "operation": "create",
+          "description": "Add Match Tracker section page shell with empty/loading/error placeholders and a signed-in gating area (data wiring implemented under REQ-7)."
+        },
+        {
+          "path": "frontend/src/pages/NewsPage.tsx",
+          "operation": "create",
+          "description": "Add News section page shell with list/detail layout regions and empty/loading/error placeholders (data wiring implemented under REQ-8)."
+        },
+        {
+          "path": "frontend/src/pages/WikiPage.tsx",
+          "operation": "create",
+          "description": "Add Wiki section page shell with list/detail layout regions and empty/loading/error placeholders (data wiring implemented under REQ-8)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add Internet Identity sign in/out UI, reflect authenticated state in the UI, and gate create/save actions behind authentication while keeping public browsing available.",
+      "acceptanceCriteria": [
+        "User can sign in and sign out using Internet Identity.",
+        "UI shows the current signed-in state (e.g., logged-in indicator and sign-out option).",
+        "Unauthenticated users can browse public content but cannot create/save builds, match history, or favorites."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Implement a login/logout button using the existing Internet Identity hook; on logout clear cached queries; use the selected \"authorization\" component guidance for auth UX and cache clearing. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useCurrentUserProfile.ts",
+          "operation": "create",
+          "description": "Create a React Query hook that calls the backend actor’s getCallerUserProfile and exposes loading states in a way that avoids profile-setup modal flash; use the selected \"authorization\" component guidance for the recommended query pattern. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/Auth/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Create a modal/prompt that asks for a user display name on first login (when getCallerUserProfile returns null) and saves it via saveCallerUserProfile; use the selected \"authorization\" component guidance for profile setup behavior. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/Auth/AuthGate.tsx",
+          "operation": "create",
+          "description": "Create a reusable guard component for pages/sections that require login for personal data operations; show a clear English sign-in prompt while still allowing public browsing where appropriate."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Wire LoginButton, authenticated indicator (using saved UserProfile name), and ProfileSetupModal into the global header; ensure navigation remains available to unauthenticated users."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement Characters & Perks database UI with list + detail views, search/filter/sort, and per-user favorite/unfavorite (persisted via backend).",
+      "acceptanceCriteria": [
+        "Characters section displays a list and a detail view for a selected character.",
+        "Perks section displays a list and a detail view for a selected perk.",
+        "Both lists include a working search field (client-side or server-side).",
+        "Signed-in users can favorite/unfavorite characters and perks; favorites persist across reloads."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useDbDContent.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to load Characters and Perks via canister calls (read-only) with loading/error states for list and detail rendering."
+        },
+        {
+          "path": "frontend/src/hooks/useUserData.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to load/save the signed-in user’s UserData (favorites/builds/match history) using canister calls, including safe handling of authorization errors (e.g., show message and prompt to sign in)."
+        },
+        {
+          "path": "frontend/src/components/Favorites/FavoriteToggleButton.tsx",
+          "operation": "create",
+          "description": "Create a favorite/unfavorite control used in Characters and Perks detail/list rows; gate write actions behind authentication via AuthGate and persist via saveUserData."
+        },
+        {
+          "path": "frontend/src/pages/CharactersPage.tsx",
+          "operation": "modify",
+          "description": "Implement Characters list + detail view with client-side search and sort controls, a selected-item detail panel, and favorite/unfavorite actions for signed-in users with persisted state across reloads."
+        },
+        {
+          "path": "frontend/src/pages/PerksPage.tsx",
+          "operation": "modify",
+          "description": "Implement Perks list + detail view with client-side search and sort controls, a selected-item detail panel, and favorite/unfavorite actions for signed-in users with persisted state across reloads."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement Build Planner UI that lets signed-in users create/edit/delete/save custom builds and browse saved builds; unauthenticated users can view UI but cannot save.",
+      "acceptanceCriteria": [
+        "Signed-in users can create a new build and save it to the backend.",
+        "Signed-in users can edit and delete previously saved builds.",
+        "Build Planner displays the user’s saved builds list and supports selecting one to view/edit.",
+        "Unauthenticated users can view the Build Planner UI but cannot save builds (prompt to sign in)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/BuildPlanner/BuildEditor.tsx",
+          "operation": "create",
+          "description": "Create a build editor form (role/type selection, build name, perk loadout selection from internal perks list, optional notes fields) that can operate in view-only mode when unauthenticated."
+        },
+        {
+          "path": "frontend/src/components/BuildPlanner/SavedBuildsList.tsx",
+          "operation": "create",
+          "description": "Create a saved builds list component that shows the current user’s builds, supports selecting a build to view/edit, and provides delete action (gated to authenticated users)."
+        },
+        {
+          "path": "frontend/src/pages/BuildPlannerPage.tsx",
+          "operation": "modify",
+          "description": "Wire BuildEditor + SavedBuildsList into the Build Planner page; implement create/edit/delete flows by updating UserData and persisting with saveUserData; show a clear sign-in prompt for save actions when unauthenticated."
+        },
+        {
+          "path": "frontend/src/components/Favorites/FavoriteBuildButton.tsx",
+          "operation": "create",
+          "description": "Add ability for signed-in users to favorite/unfavorite saved builds (stored in favorites.favoriteBuilds) and reuse it from the Build Planner and Profile areas."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement Match Tracker UI that lets signed-in users add/delete match entries and view their match history; unauthenticated users cannot access personal history.",
+      "acceptanceCriteria": [
+        "Signed-in users can add a match entry (at minimum: date/time, role, result, optional notes).",
+        "Signed-in users can view a list of their match history sorted by most recent first.",
+        "Signed-in users can delete match entries.",
+        "Unauthenticated users cannot create or view personal match history and are prompted to sign in."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MatchTracker/MatchEntryForm.tsx",
+          "operation": "create",
+          "description": "Create a match entry form (date/time, role, result, optional notes) that is only usable when authenticated (otherwise show sign-in prompt)."
+        },
+        {
+          "path": "frontend/src/components/MatchTracker/MatchHistoryList.tsx",
+          "operation": "create",
+          "description": "Create a match history list that displays the signed-in user’s matches sorted newest-first and provides delete actions."
+        },
+        {
+          "path": "frontend/src/pages/MatchTrackerPage.tsx",
+          "operation": "modify",
+          "description": "Wire MatchEntryForm + MatchHistoryList into the Match Tracker page; load from UserData; persist add/delete via saveUserData; block unauthenticated users from viewing personal history with an AuthGate prompt."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add News and Wiki sections with list + detail views and basic search, loading from the internal dataset via canister calls with empty/loading/error states.",
+      "acceptanceCriteria": [
+        "News section shows a list of news posts and a detail view.",
+        "Wiki section shows a list of wiki entries and a detail view.",
+        "Both sections include a working search field.",
+        "Pages include appropriate empty/loading/error states."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useNewsAndWiki.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to load News items and Wiki entries via canister calls, returning list data and handling loading/error states."
+        },
+        {
+          "path": "frontend/src/pages/NewsPage.tsx",
+          "operation": "modify",
+          "description": "Implement News list + detail view with basic search, selection-based detail rendering, and loading/empty/error states."
+        },
+        {
+          "path": "frontend/src/pages/WikiPage.tsx",
+          "operation": "modify",
+          "description": "Implement Wiki list + detail view with basic search, selection-based detail rendering, and loading/empty/error states."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add a Profile area that summarizes signed-in user data (saved builds, favorites, recent matches) with quick links to manage them.",
+      "acceptanceCriteria": [
+        "When signed in, user can access a Profile (or equivalent) page/area.",
+        "Profile shows counts and/or previews of: saved builds, favorites, and recent match entries.",
+        "Profile provides navigation to the relevant management pages (Build Planner, Characters/Perks, Match Tracker)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProfilePage.tsx",
+          "operation": "create",
+          "description": "Create a Profile page that requires authentication; show user name, counts/previews for builds/favorites/recent matches, and provide navigation links to Build Planner, Characters, Perks, and Match Tracker."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register and wire the Profile route into the router, and add a navigation entry (or user menu link) in the global layout."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Add a Profile link/entry that appears when authenticated (using the UserProfile name) and routes to the Profile page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Apply a consistent dark/horror-inspired Dead by Daylight theme across the app, avoiding blue/purple as primary branding colors.",
+      "acceptanceCriteria": [
+        "All pages share a consistent header/nav, spacing system, and component styling.",
+        "Theme is dark/horror-inspired and readable, with consistent typography and color usage across the app.",
+        "Primary branding colors are not blue/purple."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define the global dark/horror-inspired theme tokens (background, surface, text, accent) and base typography; ensure primary accents are not blue/purple and support readable contrast across pages."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Apply consistent layout structure (header, sidebar/top-nav spacing, content max-width) and reusable UI patterns (cards/sections) to enforce the theme across all sections."
+        },
+        {
+          "path": "frontend/src/components/EmptyState.tsx",
+          "operation": "create",
+          "description": "Create a reusable empty/loading/error state presenter consistent with the app theme and use it across pages to standardize UX."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Include generated static logo and background images as frontend assets and render them in the UI (logo in header, subtle background in layout).",
+      "acceptanceCriteria": [
+        "Generated images are placed in frontend/public/assets/generated and are referenced directly by the frontend (not served via backend).",
+        "App uses the generated logo in the header and uses the generated background subtly in the layout (without harming readability)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/dbd-companion-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated app logo image asset at the required path for direct frontend reference."
+        },
+        {
+          "path": "frontend/public/assets/generated/dbd-companion-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated subtle background texture image asset at the required path for direct frontend reference."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Reference frontend/public/assets/generated/dbd-companion-logo.dim_512x512.png in the header branding and apply frontend/public/assets/generated/dbd-companion-bg.dim_1920x1080.png as a subtle background layer with an overlay to preserve readability."
+        }
+      ]
+    }
+  ]
+}

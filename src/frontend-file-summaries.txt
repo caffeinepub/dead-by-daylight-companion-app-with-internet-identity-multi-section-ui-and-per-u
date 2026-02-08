@@ -1,0 +1,18 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Characters, Perks, Builds, Matches, News, Wiki, Profile) and wrapping the app with ThemeProvider and Toaster.",
+  "frontend/src/components/AppLayout.tsx": "Shared layout component with sticky header containing logo, navigation, auth controls, and footer; includes background texture overlay and profile setup modal trigger.",
+  "frontend/src/components/Auth/LoginButton.tsx": "Login/logout button component using Internet Identity with loading states and query cache clearing on logout.",
+  "frontend/src/components/Auth/ProfileSetupModal.tsx": "Modal dialog that prompts new users to enter their display name on first login, preventing dismissal until completed.",
+  "frontend/src/components/Auth/AuthGate.tsx": "Guard component that shows a login prompt for unauthenticated users and renders children only when authenticated.",
+  "frontend/src/components/EmptyState.tsx": "Reusable empty state component with icon, title, description, and optional action button for consistent UX across pages.",
+  "frontend/src/hooks/useCurrentUserProfile.ts": "React Query hooks for fetching and saving user profiles with proper loading state handling to prevent modal flash.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including characters, perks, news, wiki entries, and user data with proper error handling.",
+  "frontend/src/pages/CharactersPage.tsx": "Characters database page with list/detail view, search, role filtering, and favorite toggle functionality for authenticated users.",
+  "frontend/src/pages/PerksPage.tsx": "Perks database page with list/detail view, search functionality, and favorite toggle for authenticated users.",
+  "frontend/src/pages/BuildPlannerPage.tsx": "Build planner page with create/edit/delete functionality for custom builds, perk selection, and character assignment for authenticated users; fixed type casting for Variant_survivor_killer enum.",
+  "frontend/src/pages/MatchTrackerPage.tsx": "Match tracker page with add/delete match functionality, stats display, and match history list for authenticated users; fixed type casting for Variant_survivor_killer and Variant_draw_loss_victory enums.",
+  "frontend/src/pages/NewsPage.tsx": "News hub page with list/detail view, search functionality, and type-based badge coloring for news items.",
+  "frontend/src/pages/WikiPage.tsx": "Wiki page with list/detail view, search functionality, and section-based organization for community knowledge base.",
+  "frontend/src/pages/ProfilePage.tsx": "User profile page displaying stats summary (builds, matches, favorites) with quick navigation links to relevant sections.",
+  "frontend/src/index.css": "Global styles with dark horror-themed OKLCH color system using deep blacks, dark grays, and blood-red accents (hue 15) for primary and destructive colors."
+}

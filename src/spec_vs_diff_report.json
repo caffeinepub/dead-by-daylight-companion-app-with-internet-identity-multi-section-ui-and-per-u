@@ -1,0 +1,82 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T18:05:35.101Z",
+  "summary": "Diff adds a routed multi-page frontend (Characters/Perks/Builds/Matches/News/Wiki/Profile) with a shared AppLayout, Internet Identity login/logout UI, dark theme styling, and query hooks calling backend dataset/user-data methods. Backend main.mo is added but heavily truncated; only type/state scaffolding is visible, not the full set of required canister methods or auth enforcement.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Backend exposes canister methods for CRUD operations for builds, match entries, and favorites; unauthenticated calls to user-specific write operations are rejected with a clear error.",
+      "reason": "Frontend hooks show only coarse-grained user-data methods (getCallerData/saveUserData) and no evidence of backend per-entity CRUD methods or explicit unauthenticated-write rejection is visible in the truncated backend diff.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "backend/main.mo (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Characters & Perks lists include search/filter/sort controls.",
+      "reason": "Characters page shows search + role filter tabs, but no explicit sort control is evident; Perks page shows search but no filter or sort control is evident in the shown diff portions.",
+      "evidence": [
+        "frontend/src/pages/CharactersPage.tsx (truncated)",
+        "frontend/src/pages/PerksPage.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Match entry includes at minimum date/time, role, result, optional notes.",
+      "reason": "Match creation form/state shown includes matchType, mainCharacter, result, map, and auto-sets datePlayed to now; no optional notes field is shown.",
+      "evidence": [
+        "frontend/src/pages/MatchTrackerPage.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Admin/secret-token based access control initialization via URL parameter (caffeineAdminToken) and backend _initializeAccessControlWithSecret call.",
+      "reason": "BuildRequest does not ask for an admin token or secret-based access control bootstrapping; only Internet Identity auth + per-user data was requested.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Mandatory profile setup modal collecting a display name and separate user profile storage APIs (getCallerUserProfile/saveCallerUserProfile).",
+      "reason": "REQ-9 requests a profile area summarizing builds/favorites/matches, but does not request a separate onboarding modal or storing an additional user profile object/name in the backend.",
+      "evidence": [
+        "frontend/src/components/Auth/ProfileSetupModal.tsx",
+        "frontend/src/hooks/useCurrentUserProfile.ts",
+        "frontend/src/components/AppLayout.tsx (truncated)"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AppLayout.tsx",
+    "frontend/src/components/Auth/AuthGate.tsx",
+    "frontend/src/components/Auth/LoginButton.tsx",
+    "frontend/src/components/Auth/ProfileSetupModal.tsx",
+    "frontend/src/components/EmptyState.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useCurrentUserProfile.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/BuildPlannerPage.tsx",
+    "frontend/src/pages/CharactersPage.tsx",
+    "frontend/src/pages/MatchTrackerPage.tsx",
+    "frontend/src/pages/NewsPage.tsx",
+    "frontend/src/pages/PerksPage.tsx",
+    "frontend/src/pages/ProfilePage.tsx",
+    "frontend/src/pages/WikiPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T18:05:35.104Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 11,
+    "implemented": 9,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a multi-section frontend with separate navigable sections: Characters, Perks, Build Planner, Match Tracker, News, and Wiki (not a single combined page).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/AppLayout.tsx",
+          "frontend/src/pages/CharactersPage.tsx",
+          "frontend/src/pages/PerksPage.tsx",
+          "frontend/src/pages/BuildPlannerPage.tsx",
+          "frontend/src/pages/MatchTrackerPage.tsx",
+          "frontend/src/pages/NewsPage.tsx",
+          "frontend/src/pages/WikiPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/AppLayout.tsx",
+          "frontend/src/pages/CharactersPage.tsx",
+          "frontend/src/pages/PerksPage.tsx",
+          "frontend/src/pages/BuildPlannerPage.tsx",
+          "frontend/src/pages/MatchTrackerPage.tsx",
+          "frontend/src/pages/NewsPage.tsx",
+          "frontend/src/pages/WikiPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Apply a coherent, distinct visual theme for a Dead by Daylight companion app (typography, color palette, layout, components) and enforce it consistently across all sections. Avoid blue/purple as primary branding colors.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/AppLayout.tsx",
+          "frontend/src/components/EmptyState.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/AppLayout.tsx",
+          "frontend/src/components/EmptyState.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Generate and include a small set of custom static images for the app (logo and subtle background) and render them from the frontend as static assets.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/dbd-companion-logo.dim_512x512.png",
+          "frontend/public/assets/generated/dbd-companion-bg.dim_1920x1080.png",
+          "frontend/src/components/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/dbd-companion-logo.dim_512x512.png",
+          "frontend/public/assets/generated/dbd-companion-bg.dim_1920x1080.png",
+          "frontend/src/components/AppLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add Internet Identity authentication to the app so users can sign in/out and the UI reflects the authenticated state.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Auth/LoginButton.tsx",
+          "frontend/src/hooks/useCurrentUserProfile.ts",
+          "frontend/src/components/Auth/ProfileSetupModal.tsx",
+          "frontend/src/components/Auth/AuthGate.tsx",
+          "frontend/src/components/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Auth/LoginButton.tsx",
+          "frontend/src/hooks/useCurrentUserProfile.ts",
+          "frontend/src/components/Auth/ProfileSetupModal.tsx",
+          "frontend/src/components/Auth/AuthGate.tsx",
+          "frontend/src/components/AppLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement backend support for per-user data keyed by Internet Identity principal, including: saved builds, match history, and favorites (e.g., favorite characters/perks/builds).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Provide a built-in (internal/placeholder) dataset for Dead by Daylight content instead of integrating an external REST API, and expose it through backend query methods for Characters, Perks, News items, and Wiki entries.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Build the Characters & Perks database UI: list + detail views, with search/filter/sort controls, and the ability for signed-in users to favorite items.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useDbDContent.ts",
+          "frontend/src/hooks/useUserData.ts",
+          "frontend/src/components/Favorites/FavoriteToggleButton.tsx",
+          "frontend/src/pages/CharactersPage.tsx",
+          "frontend/src/pages/PerksPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/CharactersPage.tsx",
+          "frontend/src/pages/PerksPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Implement a Build Planner section that lets signed-in users create, edit, delete, and save custom builds (e.g., role/type selection and perk loadout), and browse their saved builds.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/BuildPlanner/BuildEditor.tsx",
+          "frontend/src/components/BuildPlanner/SavedBuildsList.tsx",
+          "frontend/src/pages/BuildPlannerPage.tsx",
+          "frontend/src/components/Favorites/FavoriteBuildButton.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/BuildPlannerPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Implement a Match Tracker section that lets signed-in users record match results and view their match history.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/MatchTracker/MatchEntryForm.tsx",
+          "frontend/src/components/MatchTracker/MatchHistoryList.tsx",
+          "frontend/src/pages/MatchTrackerPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/MatchTrackerPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Add News and Wiki sections that display content from the internal dataset with list + detail views and basic search.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useNewsAndWiki.ts",
+          "frontend/src/pages/NewsPage.tsx",
+          "frontend/src/pages/WikiPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/NewsPage.tsx",
+          "frontend/src/pages/WikiPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Add a user profile area that summarizes the signed-in user’s saved builds, favorites, and recent matches, with quick links to manage them.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ProfilePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ProfilePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/AppLayout.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/dbd-companion-bg.dim_1920x1080.png",
+    "frontend/public/assets/generated/dbd-companion-logo.dim_512x512.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AppLayout.tsx",
+    "frontend/src/components/Auth/AuthGate.tsx",
+    "frontend/src/components/Auth/LoginButton.tsx",
+    "frontend/src/components/Auth/ProfileSetupModal.tsx",
+    "frontend/src/components/EmptyState.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useCurrentUserProfile.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/BuildPlannerPage.tsx",
+    "frontend/src/pages/CharactersPage.tsx",
+    "frontend/src/pages/MatchTrackerPage.tsx",
+    "frontend/src/pages/NewsPage.tsx",
+    "frontend/src/pages/PerksPage.tsx",
+    "frontend/src/pages/ProfilePage.tsx",
+    "frontend/src/pages/WikiPage.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

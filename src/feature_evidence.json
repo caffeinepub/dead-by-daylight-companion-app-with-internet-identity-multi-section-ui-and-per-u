@@ -1,0 +1,193 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-multi-section-frontend-with-separate-navigable-sections-characters-perks-build-planner-match-tracker-news-and-wiki-not-a-single-combined-page",
+      "featureTitle": "Create a multi-section frontend with separate navigable sections: Characters, Perks, Build Planner, Match Tracker, News, and Wiki (not a single combined page).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/pages/BuildPlannerPage.tsx",
+        "frontend/src/pages/CharactersPage.tsx",
+        "frontend/src/pages/MatchTrackerPage.tsx",
+        "frontend/src/pages/NewsPage.tsx",
+        "frontend/src/pages/PerksPage.tsx",
+        "frontend/src/pages/WikiPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-internet-identity-authentication-to-the-app-so-users-can-sign-in-out-and-the-ui-reflects-the-authenticated-state",
+      "featureTitle": "Add Internet Identity authentication to the app so users can sign in/out and the UI reflects the authenticated state.",
+      "files": [
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/components/Auth/AuthGate.tsx",
+        "frontend/src/components/Auth/LoginButton.tsx",
+        "frontend/src/components/Auth/ProfileSetupModal.tsx",
+        "frontend/src/hooks/useCurrentUserProfile.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-characters-perks-database-ui-list-detail-views-with-search-filter-sort-controls-and-the-ability-for-signed-in-users-to-favorite-items",
+      "featureTitle": "Build the Characters & Perks database UI: list + detail views, with search/filter/sort controls, and the ability for signed-in users to favorite items.",
+      "files": [
+        "frontend/src/pages/CharactersPage.tsx",
+        "frontend/src/pages/PerksPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-build-planner-section-that-lets-signed-in-users-create-edit-delete-and-save-custom-builds-e-g-role-type-selection-and-perk-loadout-and-browse-their-saved-builds",
+      "featureTitle": "Implement a Build Planner section that lets signed-in users create, edit, delete, and save custom builds (e.g., role/type selection and perk loadout), and browse their saved builds.",
+      "files": [
+        "frontend/src/pages/BuildPlannerPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-match-tracker-section-that-lets-signed-in-users-record-match-results-and-view-their-match-history",
+      "featureTitle": "Implement a Match Tracker section that lets signed-in users record match results and view their match history.",
+      "files": [
+        "frontend/src/pages/MatchTrackerPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-news-and-wiki-sections-that-display-content-from-the-internal-dataset-with-list-detail-views-and-basic-search",
+      "featureTitle": "Add News and Wiki sections that display content from the internal dataset with list + detail views and basic search.",
+      "files": [
+        "frontend/src/pages/NewsPage.tsx",
+        "frontend/src/pages/WikiPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-user-profile-area-that-summarizes-the-signed-in-user-s-saved-builds-favorites-and-recent-matches-with-quick-links-to-manage-them",
+      "featureTitle": "Add a user profile area that summarizes the signed-in user’s saved builds, favorites, and recent matches, with quick links to manage them.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/pages/ProfilePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-distinct-visual-theme-for-a-dead-by-daylight-companion-app-typography-color-palette-layout-components-and-enforce-it-consistently-across-all-sections-avoid-blue-purple-as-primary-branding-colors",
+      "featureTitle": "Apply a coherent, distinct visual theme for a Dead by Daylight companion app (typography, color palette, layout, components) and enforce it consistently across all sections. Avoid blue/purple as primary branding colors.",
+      "files": [
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/components/EmptyState.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-a-small-set-of-custom-static-images-for-the-app-logo-and-subtle-background-and-render-them-from-the-frontend-as-static-assets",
+      "featureTitle": "Generate and include a small set of custom static images for the app (logo and subtle background) and render them from the frontend as static assets.",
+      "files": [
+        "frontend/src/components/AppLayout.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
